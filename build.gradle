@@ -28,7 +28,30 @@ dependencies {
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     implementation 'org.seleniumhq.selenium:selenium-java:4.14.0'
 
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testImplementation group: 'org.testng', name: 'testng', version: '7.10.2'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.2'
+
+
+
 }
+
+test {
+    // Use TestNG for testing
+    useTestNG() {
+        suites 'src/test/java/resource/testng.xml'  // Path to your TestNG XML suite file
+        
+    }
+
+    // Configure test logging
+    testLogging {
+        showStandardStreams = true  // Show output from tests to the console
+        events "passed", "skipped", "failed"  // Log passed, skipped, and failed events
+    }
+}
+
 
 //task startScript(type:Exec) {
 //    commandLine './selenium-run.sh'
